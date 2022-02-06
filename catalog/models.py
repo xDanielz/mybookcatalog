@@ -1,3 +1,4 @@
+from asyncio.windows_events import NULL
 from django.db import models
 from django.utils import timezone
 
@@ -10,7 +11,7 @@ class ReadingMaterial(models.Model):
     author = models.CharField(max_length=200)
     coutry_of_origin = models.CharField(max_length=200)
     synopsis = models.TextField()
-    additional_information = models.TextField(null=True)
+    additional_information = models.TextField(default='')
     number = models.IntegerField(default=1)
 
     def __str__(self):
