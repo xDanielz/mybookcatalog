@@ -1,17 +1,19 @@
 from django.db import models
+from django.utils import timezone
 
 class ReadingMaterial(models.Model):
 
     original_title = models.CharField(max_length=200)
     adapted_title = models.CharField(max_length=200)
-    first_publication_date = models.DateTimeField('date published')
+    year_of_publication = models.DateField('year of publication', default=timezone.now())
+    pub_date = models.DateTimeField('date published', default=timezone.now())
     author = models.CharField(max_length=200)
     coutry_of_origin = models.CharField(max_length=200)
     synopsis = models.TextField()
     additional_information = models.TextField()
     number = models.IntegerField(default=1)
 
-    def __str__(self) -> str:
+    def __str__(self):
         return self.original_title
 
 
