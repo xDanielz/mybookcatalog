@@ -10,7 +10,7 @@ class ReadingMaterial(models.Model):
     author = models.CharField(max_length=200)
     coutry_of_origin = models.CharField(max_length=200)
     synopsis = models.TextField()
-    additional_information = models.TextField()
+    additional_information = models.TextField(null=True)
     number = models.IntegerField(default=1)
 
     def __str__(self):
