@@ -1,3 +1,16 @@
-from django.shortcuts import render
+from django.views import generic
+from .models import ReadingMaterial
 
-# Create your views here.
+class IndexView(generic.ListView):
+    template_name = 'catalog/index.html'
+    paginate_by = 10
+    model = ReadingMaterial
+
+
+class DetailView(generic.DetailView):
+    model = ReadingMaterial
+    template_name = 'catalog/detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
