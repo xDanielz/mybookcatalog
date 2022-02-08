@@ -34,9 +34,18 @@
                 {% endif %}
         </table>
         
+        <ul>
+            <span>Gênero{{ object.gender_set.all|pluralize }}:</span>
+            {% for gender in object.gender_set.all %}
+                <li>{{ gender|upper }}</li>
+            {% endfor %}
+        </ul>
+
         <h2>Sinopse</h2>
         <p>{{ object.synopsis|title }}</p>
         <h2>Informação adicional</h2>
         <p>{{ object.additional_information|title }}</p>
+
+        <span><a href="{% url 'catalog:index' %}">Página inicial</a></span>
     </body>
 </html>

@@ -3,7 +3,7 @@ from .models import ReadingMaterial
 
 class IndexView(generic.ListView):
     template_name = 'catalog/index.html'
-    paginate_by = 10
+    paginate_by = 2
     model = ReadingMaterial
 
 
