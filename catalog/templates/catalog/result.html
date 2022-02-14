@@ -1,0 +1,33 @@
+{% extends "catalog/base.html" %}
+
+{% load static %}
+
+{% block body %}
+    <h1>{{ gender }}</h1>
+
+    {% for book in page_obj %}
+        <a href="{% url 'catalog:detail' book.id %}">{{ book.adapted_title|upper }}</a><br />
+    {% endfor %}
+
+    <br />
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; Primeiro</a>
+                <a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+            {% endif %}
+        </span>
+
+        <span class="current">
+            Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}. 
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">Próximo</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}"> Último</a>
+        {% endif %}
+    </div>
+
+    <a href="{% url 'catalog:index' %}">Inicio</a>
+{% endblock %}

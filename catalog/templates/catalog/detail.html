@@ -1,51 +1,44 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{{ object.adapted_title|upper }}</title>
-        <style>
-            th{
-                text-align: right;
-            }
-        </style>
-    </head>
-    <body>
-        <h1>{{ object.adapted_title|upper }}</h1>
-        
-        <table>
-            <tr>
-                <th>Titulo original:</th>
-                <td>{{ object.original_title|upper }}</td></tr>
-            <tr>
-                <th>Ano de publicação:</th>
-                <td>{{ object.year_of_publication }}</td></tr>
-            <tr>
-                <th>Autor:</th>
-                <td>{{ object.author|upper }}</td></tr>
-            <tr>
-                <th>Pais de origem:</th>
-                <td>{{ object.coutry_of_origin|upper }}</td></tr>
-            <tr>
-                {% if object.number %}
-                    <th>Número:</th>
-                    <td>{{ object.number }}</td></tr>
-                {% endif %}
-        </table>
-        
-        <ul>
-            <span>Gênero{{ object.gender_set.all|pluralize }}:</span>
-            {% for gender in object.gender_set.all %}
-                <li>{{ gender|upper }}</li>
-            {% endfor %}
-        </ul>
+{% extends "catalog/base.html" %}
 
-        <h2>Sinopse</h2>
-        <p>{{ object.synopsis|title }}</p>
-        <h2>Informação adicional</h2>
-        <p>{{ object.additional_information|title }}</p>
+{% load static %}
 
-        <span><a href="{% url 'catalog:index' %}">Página inicial</a></span>
-    </body>
-</html>
+{% block link_css %}
+    <link rel="stylesheet" href="{% static 'catalog/detail.css' %}">
+{% endblock %}
+
+{% block body %}
+    <h1>{{ object.adapted_title|upper }}</h1>
+
+    <table>
+        <tr>
+            <th>Titulo original:</th>
+            <td>{{ object.original_title|upper }}</td></tr>
+        <tr>
+            <th>Ano de publicação:</th>
+            <td>{{ object.year_of_publication }}</td></tr>
+        <tr>
+            <th>Autor:</th>
+            <td>{{ object.author|upper }}</td></tr>
+        <tr>
+            <th>Pais de origem:</th>
+            <td>{{ object.coutry_of_origin|upper }}</td></tr>
+        <tr>
+            {% if object.number %}
+                <th>Número:</th>
+                <td>{{ object.number }}</td></tr>
+            {% endif %}
+    </table>
+
+    <ul>
+        <span>Gênero{{ object.gender_set.all|pluralize }}:</span>
+        {% for gender in object.gender_set.all %}
+            <li>{{ gender|upper }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Sinopse</h2>
+    <p>{{ object.synopsis|title }}</p>
+
+    <h2>Informação adicional</h2>
+    <p>{{ object.additional_information|title }}</p>
+{% endblock %}

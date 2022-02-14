@@ -1,32 +1,19 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo de livros</title>
-</head>
-<body>
-    {% for book in page_obj %}
-        <a href="{% url 'catalog:detail' book.id %}">{{ book.adapted_title|upper }}</a><br />
-    {% endfor %}
+{% extends "catalog/base.html" %}
 
-    <div class="pagination">
-        <span class="step-links">
-            {% if page_obj.has_previous %}
-                <a href="?page=1">&laquo; first</a>
-                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-            {% endif %}
-            
-            <span class="current">
-                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-            </span>
+{% load static %}
 
-            {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}">next</a>
-                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-            {% endif %}
-        </span>
+{% block link_css %} 
+    <link rel="stylesheet" type="text/css" href="{% static 'catalog/index.css' %}">
+{% endblock %}
+
+{% block body %}
+
+	<div>
+        <a href="{% url 'catalog:all' %}">TODOS</a>
     </div>
-</body>         
-</html>
+
+    {% for k, v in genders.items %}
+        <div><a href="{% url 'catalog:result' k %}">{{ v }}</a></div>
+    {% endfor %}
+    
+{% endblock %}
