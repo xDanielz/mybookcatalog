@@ -11,7 +11,7 @@ class ReadingMaterial(models.Model):
     coutry_of_origin = models.CharField(max_length=200)
     synopsis = models.TextField()
     additional_information = models.TextField(default='')
-    number = models.IntegerField(default=1)
+    number = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
         return self.original_title
