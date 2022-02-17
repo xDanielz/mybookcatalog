@@ -11,7 +11,7 @@ class ReadingMaterial(models.Model):
     coutry_of_origin = models.CharField(max_length=200)
     synopsis = models.TextField()
     additional_information = models.TextField(default='')
-    image = models.ImageField(upload_to='static\catalog\images')
+    image = models.ImageField(upload_to='catalog/templates/catalog/cover_images', null=True, blank=True)
     number = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
