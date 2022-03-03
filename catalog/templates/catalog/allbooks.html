@@ -6,7 +6,7 @@
     <h1>TODOS</h1>
 
     {% for book in page_obj %}
-        <a href="{% url 'catalog:detail' book.id %}">{{ book.adapted_title|upper }}</a><br />
+        <a href="{% url 'catalog:detail' book.slug %}">{{ book.adapted_title|upper }}</a><br />
     {% endfor %}
 
     <br />
