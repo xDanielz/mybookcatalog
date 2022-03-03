@@ -1,9 +1,11 @@
+from email.policy import HTTP
 import unicodedata
+from django.http import Http404
 
 from django.views import generic
 from .models import ReadingMaterial, Gender
 from django.core.paginator import Paginator
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 
 
 _genders = {}
@@ -28,12 +30,23 @@ class AllbooksView(generic.ListView):
 
 
 class DetailView(generic.DetailView):
-    model = ReadingMaterial
+    queryset = ReadingMaterial.objects.all()
     template_name = 'catalog/detail.html'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context
+    def get_object(self):
+        slug = self.kwargs.get('slug')
+        
+        try:
+            instance = ReadingMaterial.objects.get(slug=slug)
+        except ReadingMaterial.DoesNotExist:
+            raise Http404("Não encontrado")
+        except ReadingMaterial.MultipleObjectsReturned:
+            qs = ReadingMaterial.objects.filter(slug=slug)
+            instance = qs.first()
+
+        return instance
+
+    
 
 
 

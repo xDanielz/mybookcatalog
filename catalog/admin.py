@@ -16,7 +16,7 @@ class ReadingMaterialAdmin(admin.ModelAdmin):
         ('Date information', {'fields': ['pub_date', 'year_of_publication'], 'classes': ['collapse']}),
         ('Author',           {'fields': ['author', 'coutry_of_origin']}),
         ('About',            {'fields': ['synopsis', 'additional_information', 'number']}),
-        ('Cover',             {'fields': ['image']})
+        ('Cover',            {'fields': ['image']})
     ]
 
     inlines = [GenderInline]
