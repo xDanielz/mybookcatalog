@@ -12,7 +12,7 @@ class GenderInline(admin.TabularInline):
 class ReadingMaterialAdmin(admin.ModelAdmin):
 
     fieldsets = [
-        ('Title',            {'fields': ['original_title', 'adapted_title']}),
+        ('Title',            {'fields': ['original_title', 'adapted_title', 'slug']}),
         ('Date information', {'fields': ['pub_date', 'year_of_publication'], 'classes': ['collapse']}),
         ('Author',           {'fields': ['author', 'coutry_of_origin']}),
         ('About',            {'fields': ['synopsis', 'additional_information', 'number']}),
