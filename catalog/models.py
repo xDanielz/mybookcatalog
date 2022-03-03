@@ -4,13 +4,13 @@ from django.utils import timezone
 class ReadingMaterial(models.Model):
 
     original_title         = models.CharField(max_length=200)
-    slug                   = models.SlugField(max_length=200)
+    slug                   = models.SlugField(max_length=200, unique=True)
     adapted_title          = models.CharField(max_length=200)
     year_of_publication    = models.DateField('year of publication', default=timezone.now())
     pub_date               = models.DateTimeField('date published', default=timezone.now())
     author                 = models.CharField(max_length=200)
     coutry_of_origin       = models.CharField(max_length=200)
-    synopsis               = models.TextField(unique=True)
+    synopsis               = models.TextField()
     additional_information = models.TextField(default='')
     image                  = models.ImageField(upload_to='catalog/static/catalog/images', null=True, blank=True)
     number                 = models.IntegerField(null=True, blank=True)
