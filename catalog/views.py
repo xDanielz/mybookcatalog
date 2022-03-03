@@ -16,7 +16,7 @@ for gen in Gender.objects.all():
 class IndexView(generic.ListView):
     template_name = 'catalog/index.html'
     context_object_name = 'genders'
-
+    
     def get_queryset(self):
         return _genders
 
