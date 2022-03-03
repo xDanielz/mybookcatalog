@@ -10,7 +10,7 @@ class ReadingMaterial(models.Model):
     pub_date               = models.DateTimeField('date published', default=timezone.now())
     author                 = models.CharField(max_length=200)
     coutry_of_origin       = models.CharField(max_length=200)
-    synopsis               = models.TextField()
+    synopsis               = models.TextField(unique=True)
     additional_information = models.TextField(default='')
     image                  = models.ImageField(upload_to='catalog/static/catalog/images', null=True, blank=True)
     number                 = models.IntegerField(null=True, blank=True)

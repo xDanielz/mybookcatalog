@@ -9,6 +9,7 @@
 {% block body %}
     <h1>{{ object.adapted_title|upper }}</h1>
     <img src="../../static/catalog/images/{{ object.image.name|slice:'30:' }}" alt="Capa do livro {{ object.adapted_title|upper }}"></img>
+    
     <table>
         <tr>
             <th>Titulo original:</th>
