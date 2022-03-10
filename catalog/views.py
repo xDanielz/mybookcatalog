@@ -1,7 +1,5 @@
-from email.policy import HTTP
 import unicodedata
 from django.http import Http404
-
 from django.views import generic
 from .models import ReadingMaterial, Gender
 from django.core.paginator import Paginator
@@ -47,9 +45,6 @@ class DetailView(generic.DetailView):
         return instance
 
     
-
-
-
 def ResultView(request, gender):
     books = []
 

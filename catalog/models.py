@@ -1,10 +1,12 @@
 from django.db import models
 from django.utils import timezone
+from .utils import unique_slug_generator
+from django.db.models.signals import pre_save
 
 class ReadingMaterial(models.Model):
 
     original_title         = models.CharField(max_length=200)
-    slug                   = models.SlugField(max_length=200, unique=True)
+    slug                   = models.SlugField(blank=True, max_length=200, unique=True)
     adapted_title          = models.CharField(max_length=200)
     year_of_publication    = models.DateField('year of publication', default=timezone.now())
     pub_date               = models.DateTimeField('date published', default=timezone.now())
@@ -26,4 +28,10 @@ class Gender(models.Model):
 
     def __str__(self):
         return self.gender_name
+
+
+def product_pre_save_receiver(sender, instance, *args, **kwargs):
+    if not instance.slug:
+        instance.slug = unique_slug_generator(instance)
     
+pre_save.connect(product_pre_save_receiver, sender=ReadingMaterial)
